@@ -264,7 +264,7 @@
             <ul>
                 <li><a href="#overview">1. סקירה כללית ומהות הטכנולוגיה</a></li>
                 <li><a href="#architecture">2. ארכיטקטורה טכנית - Multi-Agent System</a></li>
-                <li><a href="#vs-llms">3. Manus AI מול מודלים כלליים (GPT-4, Claude, Gemini)</a></li>
+                <li><a href="#vs-llms">3. Manus AI מול מודלים כלליים (GPT, Claude, Gemini)</a></li>
                 <li><a href="#vs-coding">4. Manus AI מול סוכני קוד (Cursor, Claude Code)</a></li>
                 <li><a href="#unique">5. תכונות ייחודיות ודיפרנציאטורים</a></li>
                 <li><a href="#benchmarks">6. ביצועים ומדדים</a></li>
@@ -289,7 +289,7 @@
             <ul>
                 <li><strong>פיתוח:</strong> Butterfly Effect (סטארטאפ סיני בהנהגת Red Xiao)</li>
                 <li><strong>רכישה:</strong> Meta Platforms (דצמבר 2025, ~2 מיליארד דולר)</li>
-                <li><strong>מיקום:</strong> העברה מבייג'ינג לסינגפור (Singapore Washing למניעת חיכוך רגולטורי)</li>
+                <li><strong>מיקום:</strong> העברה מבייג'ינג לסינגפור כחלק מהתרחבות גלובלית ומיצוב רגולטורי</li>
                 <li><strong>סטטוס נוכחי:</strong> חלק מהמערכת האקולוגית של Meta, עם אינטגרציות מתוכננות ל-WhatsApp ו-Ray-Ban</li>
             </ul>
 
@@ -367,11 +367,11 @@
             </table>
 
             <h3>🖥️ סביבת ה-Sandbox - "Linux as a Service"</h3>
-            <p>כל הפעלת Manus מקימה <strong>מכונה וירטואלית (VM) ייעודית ומבודדת</strong> עם Ubuntu מלאה:</p>
+            <p>כל הפעלת Manus מקימה <strong>סביבת ביצוע מבודדת בענן</strong> עם יכולות Linux:</p>
             <ul>
                 <li><strong>מערכת קבצים מתמשכת:</strong> יצירת קבצים, תיקיות, מסדי נתונים במהלך משימה</li>
-                <li><strong>Root Access:</strong> התקנת חבילות (pip, apt), קומפילציה, הרצת שרתים</li>
-                <li><strong>בידוד אבטחה:</strong> VM ארעית שמתאפסת אחרי משימה - אין סיכון למכונה המקומית</li>
+                <li><strong>התקנת תוכנות:</strong> התקנת חבילות, קומפילציה, הרצת שרתים</li>
+                <li><strong>בידוד אבטחה:</strong> סביבה ארעית שמתאפסת אחרי משימה - אין סיכון למכונה המקומית</li>
             </ul>
 
             <div class="alert-box alert-info">
@@ -383,21 +383,21 @@
         </section>
 
         <section id="vs-llms">
-            <h2><span class="icon">⚖️</span> Manus AI מול מודלים כלליים (GPT-4, Claude, Gemini)</h2>
+            <h2><span class="icon">⚖️</span> Manus AI מול מודלים כלליים (GPT, Claude, Gemini)</h2>
 
             <h3>🎭 ההבדל הפילוסופי</h3>
-            <p>מודלים כמו GPT-4, Claude 3.5, ו-Gemini הם בעיקרם <strong>מנועי יצירת טקסט</strong> שמגיבים להנחיות. Manus AI הוא <strong>סוכן פעיל</strong> שמתכנן ומבצע.</p>
+            <p>מודלים כמו GPT, Claude ו-Gemini הם בעיקרם <strong>ממוקדי צ'אט עם יכולות כלים משתנות</strong> שמגיבים להנחיות. Manus AI הוא <strong>סוכן פעיל</strong> שמתכנן ומבצע.</p>
 
             <table>
                 <tr>
                     <th>קריטריון</th>
                     <th>Manus AI</th>
-                    <th>GPT-4 / Claude / Gemini</th>
+                    <th>GPT / Claude / Gemini</th>
                 </tr>
                 <tr>
                     <td><strong>טבע הפעילות</strong></td>
                     <td>סוכן אוטונומי - מתכנן ומבצע משימות</td>
-                    <td>מודל תגובה - מייצר טקסט בלבד</td>
+                    <td>מודל תגובה - ממוקד צ'אט עם יכולות כלים משתנות</td>
                 </tr>
                 <tr>
                     <td><strong>ארכיטקטורה</strong></td>
@@ -406,7 +406,7 @@
                 </tr>
                 <tr>
                     <td><strong>סביבת ביצוע</strong></td>
-                    <td>Linux Sandbox מלא עם Root Access</td>
+                    <td>סביבת ביצוע מבודדת בענן עם יכולות Linux</td>
                     <td>אין סביבת execution (למעט Code Interpreter מוגבל)</td>
                 </tr>
                 <tr>
@@ -429,7 +429,7 @@
             <div class="alert-box alert-warning">
                 <span style="font-size: 1.5em;">⚠️</span>
                 <div>
-                    <strong>חשוב להבין:</strong> Manus משתמש בתוכו במודלים כמו Claude 3.7 Sonnet ו-Qwen, אבל הערך הקנייני שלו הוא בארכיטקטורת התזמור - לא במודל עצמו.
+                    <strong>חשוב להבין:</strong> Manus משתמש בתוכו במודלים כמו Claude Sonnet ו-Qwen, אבל הערך הקנייני שלו הוא בארכיטקטורת התזמור - לא במודל עצמו.
                 </div>
             </div>
 
@@ -438,7 +438,7 @@
             <table>
                 <tr>
                     <th>שלב</th>
-                    <th>GPT-4 / Claude</th>
+                    <th>GPT / Claude</th>
                     <th>Manus AI</th>
                 </tr>
                 <tr>
@@ -704,19 +704,19 @@
                 </tr>
                 <tr>
                     <td><strong>Level 1</strong><br>(משימות בסיסיות)</td>
-                    <td><span class="badge badge-success">86.5%</span></td>
+                    <td><span class="badge badge-success">86.5% (מדווח)</span></td>
                     <td><span class="badge badge-warning">74%</span></td>
                     <td><span class="badge badge-danger">~40%</span></td>
                 </tr>
                 <tr>
                     <td><strong>Level 2</strong><br>(משימות בינוניות)</td>
-                    <td><span class="badge badge-warning">70.1%</span></td>
+                    <td><span class="badge badge-warning">70.1% (מדווח)</span></td>
                     <td><span class="badge badge-danger">~55%</span></td>
                     <td><span class="badge badge-danger">~25%</span></td>
                 </tr>
                 <tr>
                     <td><strong>Level 3</strong><br>(משימות מורכבות)</td>
-                    <td><span class="badge badge-warning">57.7%</span></td>
+                    <td><span class="badge badge-warning">57.7% (מדווח)</span></td>
                     <td><span class="badge badge-danger">~35%</span></td>
                     <td><span class="badge badge-danger">~10%</span></td>
                 </tr>
@@ -739,7 +739,7 @@
             <div class="alert-box alert-info">
                 <span style="font-size: 1.5em;">💡</span>
                 <div>
-                    <strong>הערה חשובה:</strong> חלק מהציונים מוזכרים במדיה אך לא מופיעים ב-leaderboard ציבורי - קשה לאמת באופן עצמאי.
+                    <strong>הערה חשובה:</strong> ציונים אלו מצוטטים מבלוגים ומדיה טכנולוגית ואינם מופיעים ב-leaderboard רשמי - יש להתייחס אליהם כערכים מדווחים ולא כעובדות מאומתות.
                 </div>
             </div>
         </section>
@@ -766,7 +766,7 @@
                     <p>מודל "תשלום לפי צעד" - משימה שנכנסת ללולאה יכולה לרוקן קרדיטים.</p>
                     <p><strong>דוגמאות:</strong></p>
                     <ul>
-                        <li>משימה טיפוסית: ~150 קרדיטים</li>
+                        <li>משימה טיפוסית: ~150 קרדיטים (אומדן לא רשמי)</li>
                         <li>משימה שנכשלה: עד 1,000+ קרדיטים</li>
                         <li>Wide Research: תלוי במספר פריטים</li>
                     </ul>
@@ -774,7 +774,7 @@
 
                 <div class="feature-card">
                     <h4>🔓 סיכוני אבטחה</h4>
-                    <p>Root Access ב-VM + חיבור לאינטרנט = סיכון פוטנציאלי.</p>
+                    <p>הרשאות גבוהות בסביבת הביצוע + חיבור לאינטרנט = סיכון פוטנציאלי.</p>
                     <p><strong>איומים:</strong></p>
                     <ul>
                         <li>Prompt Injection מאתרים זדוניים</li>
@@ -843,7 +843,7 @@
                 <div>
                     <strong>4 דיפרנציאטורים מרכזיים:</strong>
                     <ol>
-                        <li><strong>Linux Sandbox מלא</strong> - ביצוע אוטונומי עם התקנת תוכנות ומערכת קבצים מתמשכת</li>
+                        <li><strong>סביבת ביצוע מבודדת</strong> - ביצוע אוטונומי עם התקנת תוכנות ומערכת קבצים מתמשכת</li>
                         <li><strong>Wide Research</strong> - סקייל מקבילי של מאות סוכנים לעיבוד מידע בקנה מידה</li>
                         <li><strong>Projects & Skills</strong> - "זיכרון" תפעולי עם context persistence ברמת מערכת</li>
                         <li><strong>אינטגרציות מוכנות</strong> - Slack, Browser, Zapier, Mail - "להישאר בזרימה"</li>
@@ -887,7 +887,7 @@
                 </tr>
                 <tr>
                     <td>צ'אט ושאלות כלליות</td>
-                    <td><strong>GPT-4 / Claude</strong></td>
+                    <td><strong>GPT / Claude</strong></td>
                     <td>יעיל יותר ללא overhead של agent</td>
                 </tr>
                 <tr>
@@ -930,13 +930,13 @@
                 <tr>
                     <td><strong>Pro (Tier 1)</strong></td>
                     <td>$20/חודש</td>
-                    <td>4,000/חודש</td>
+                    <td>4,000/חודש (משוער)</td>
                     <td>~26</td>
                 </tr>
                 <tr>
                     <td><strong>Pro (Tier 2)</strong></td>
                     <td>$40/חודש</td>
-                    <td>8,000/חודש</td>
+                    <td>8,000/חודש (משוער)</td>
                     <td>~53</td>
                 </tr>
                 <tr>
@@ -950,7 +950,7 @@
             <div class="alert-box alert-warning">
                 <span style="font-size: 1.5em;">⚠️</span>
                 <div>
-                    <strong>שים לב:</strong> משימה טיפוסית = ~150 קרדיטים, אבל צריכה משתנה בהתאם למורכבות. Wide Research ו-Website Builder עלולים לצרוך הרבה יותר.
+                    <strong>שים לב:</strong> משימה טיפוסית מוערכת ב-~150 קרדיטים (אומדן לא רשמי), אבל צריכה משתנה בהתאם למורכבות. Wide Research ו-Website Builder עלולים לצרוך הרבה יותר.
                 </div>
             </div>
 

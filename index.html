@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manus AI: השוואה טכנית מעמיקה</title>
+    <style>
+        :root {
+            --primary-color: #0088cc;
+            --secondary-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --purple-color: #9b59b6;
+            --dark-bg: #1a1a2e;
+            --card-bg: #16213e;
+            --text-color: #eee;
+            --code-bg: #0f0f23;
+            --border-color: #3d5a80;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #0f0f23 100%);
+            color: var(--text-color);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #005577 100%);
+            margin-bottom: 40px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 40px rgba(0, 136, 204, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px 20px;
+        }
+
+        section {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h2 .icon {
+            font-size: 1.2em;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.3em;
+            margin: 25px 0 15px 0;
+        }
+
+        h4 {
+            color: var(--warning-color);
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin: 15px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+            margin: 5px 5px 5px 0;
+        }
+
+        .badge-primary { background: #0088cc; }
+        .badge-success { background: #2ecc71; }
+        .badge-warning { background: #f39c12; }
+        .badge-danger { background: #e74c3c; }
+        .badge-purple { background: #9b59b6; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--code-bg);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: right;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(0, 136, 204, 0.1);
+        }
+
+        .alert-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .alert-info {
+            background: rgba(0, 136, 204, 0.15);
+            border-right: 4px solid var(--primary-color);
+        }
+
+        .alert-success {
+            background: rgba(46, 204, 113, 0.15);
+            border-right: 4px solid var(--secondary-color);
+        }
+
+        .alert-warning {
+            background: rgba(243, 156, 18, 0.15);
+            border-right: 4px solid var(--warning-color);
+        }
+
+        .alert-danger {
+            background: rgba(231, 76, 60, 0.15);
+            border-right: 4px solid var(--danger-color);
+        }
+
+        code {
+            background: var(--code-bg);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            color: #7fdbca;
+        }
+
+        ul, ol {
+            margin: 15px 30px;
+            line-height: 1.8;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-card {
+            background: var(--code-bg);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .toc {
+            background: var(--code-bg);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin: 0;
+        }
+
+        .toc li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .toc li:last-child {
+            border-bottom: none;
+        }
+
+        .toc a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .toc a:hover {
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🤖 Manus AI: השוואה טכנית מעמיקה</h1>
+        <p>ניתוח מפורט של היכולות הייחודיות מול מודלים כלליים וסוכנים מתחרים</p>
+        <div>
+            <span class="badge badge-primary">Multi-Agent System</span>
+            <span class="badge badge-success">Autonomous Execution</span>
+            <span class="badge badge-warning">Wide Research</span>
+            <span class="badge badge-purple">Meta Acquisition</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav class="toc">
+            <h3>📋 תוכן עניינים</h3>
+            <ul>
+                <li><a href="#overview">1. סקירה כללית ומהות הטכנולוגיה</a></li>
+                <li><a href="#architecture">2. ארכיטקטורה טכנית - Multi-Agent System</a></li>
+                <li><a href="#vs-llms">3. Manus AI מול מודלים כלליים (GPT-4, Claude, Gemini)</a></li>
+                <li><a href="#vs-coding">4. Manus AI מול סוכני קוד (Cursor, Claude Code)</a></li>
+                <li><a href="#unique">5. תכונות ייחודיות ודיפרנציאטורים</a></li>
+                <li><a href="#benchmarks">6. ביצועים ומדדים</a></li>
+                <li><a href="#limitations">7. מגבלות וסיכונים</a></li>
+                <li><a href="#summary">8. סיכום והמלצות</a></li>
+            </ul>
+        </nav>
+
+        <section id="overview">
+            <h2><span class="icon">🎯</span> סקירה כללית ומהות הטכנולוגיה</h2>
+
+            <p><strong>Manus AI</strong> אינו סתם מודל שפה גדול נוסף - זהו <strong>סוכן אוטונומי מלא</strong> שנבנה על פילוסופיה שונה לחלוטין: המעבר מ-"מוח" (חשיבה) ל-"ידיים" (ביצוע).</p>
+
+            <div class="alert-box alert-info">
+                <span style="font-size: 1.5em;">💡</span>
+                <div>
+                    <strong>ההבדל המרכזי:</strong> בעוד מודלים כמו GPT ו-Claude מציעים תשובות טקסטואליות, Manus AI מבצע משימות מקצה לקצה - כותב קוד, בונה אתרים, יוצר מצגות, מנהל דפדפן, ומייצר תוצרים מוכנים לשימוש.
+                </div>
+            </div>
+
+            <h3>🏢 רקע עסקי</h3>
+            <ul>
+                <li><strong>פיתוח:</strong> Butterfly Effect (סטארטאפ סיני בהנהגת Red Xiao)</li>
+                <li><strong>רכישה:</strong> Meta Platforms (דצמבר 2025, ~2 מיליארד דולר)</li>
+                <li><strong>מיקום:</strong> העברה מבייג'ינג לסינגפור (Singapore Washing למניעת חיכוך רגולטורי)</li>
+                <li><strong>סטטוס נוכחי:</strong> חלק מהמערכת האקולוגית של Meta, עם אינטגרציות מתוכננות ל-WhatsApp ו-Ray-Ban</li>
+            </ul>
+
+            <h3>🎭 "Brain vs Hands" - המוטו המנחה</h3>
+            <p>התיעוד הרשמי של Manus משתמש בהשוואה זו כדי להבהיר את ההבדל:</p>
+            <ul>
+                <li><strong>LLMs מסורתיים (Brain):</strong> מספקים "חשיבה" - ניתוח, תכנון, המלצות</li>
+                <li><strong>Manus AI (Hands):</strong> מתמקד ב"ביצוע" - תפעול כלים, יצירת קבצים, פריסה של תוצרים</li>
+            </ul>
+        </section>
+
+        <section id="architecture">
+            <h2><span class="icon">🏗️</span> ארכיטקטורה טכנית - Multi-Agent System</h2>
+
+            <p>הלב הטכנולוגי של Manus AI הוא <strong>מערכת מרובת-סוכנים (MAS)</strong> שמפרקת משימות מורכבות לרכיבים מתמחים.</p>
+
+            <h3>🔧 שלושת הסוכנים המרכזיים</h3>
+
+            <div class="grid-2">
+                <div class="feature-card">
+                    <h4>🧠 The Planner (המתכנן)</h4>
+                    <p><strong>תפקיד:</strong> מקבל את המטרה ברמה גבוהה, מפרק אותה לגרף תלות של תתי-משימות, ומאציל סמכויות לסוכנים מתמחים.</p>
+                    <p><strong>ייחוד:</strong> לא מריץ קוד ולא גולש ברשת - רק מתכנן ומתזמר.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>⚙️ The Executor (המבצע)</h4>
+                    <p><strong>תפקיד:</strong> סוכנים מתמחים (קידוד, מחקר, עיצוב) שמקבלים משימות בדידות ומבצעים אותן בתוך Sandbox.</p>
+                    <p><strong>ייחוד:</strong> עובד בסביבת Linux מלאה עם יכולת התקנת תוכנות.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>✅ The Verifier (המאמת)</h4>
+                    <p><strong>תפקיד:</strong> מעריך באופן עצמאי את הפלט של המבצע. אם סקריפט נכשל, מחזיר feedback למתכנן.</p>
+                    <p><strong>ייחוד:</strong> מעגל משוב Analyze → Plan → Execute → Observe.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🔄 Agent Loop (לולאת הסוכן)</h4>
+                    <p><strong>תהליך:</strong> ניתוח אירועים → בחירת כלים → המתנה לביצוע → איטרציה → הגשת תוצאות → דיווח.</p>
+                    <p><strong>יתרון:</strong> מעקב רציף אחר היסטוריית המשימה.</p>
+                </div>
+            </div>
+
+            <div class="alert-box alert-success">
+                <span style="font-size: 1.5em;">✅</span>
+                <div>
+                    <strong>יתרון ארכיטקטוני מרכזי:</strong> הפרדה ברורה בין תכנון לביצוע מונעת "סחף הקשר" (Context Drift) ומאפשרת עבודה מקבילית יעילה.
+                </div>
+            </div>
+
+            <h3>💾 ניהול הקשר וזיכרון - אסטרטגיות מתקדמות</h3>
+
+            <table>
+                <tr>
+                    <th>אסטרטגיה</th>
+                    <th>תיאור</th>
+                    <th>יתרון</th>
+                </tr>
+                <tr>
+                    <td><strong>Reduce</strong><br>(הפחתה)</td>
+                    <td>שמירת תוצאות מלאות במערכת קבצים, רק הפניות קצרות בחלון הקשר</td>
+                    <td>מונע תפיסת חלון הקשר, מאפשר "זיכרון אינסופי"</td>
+                </tr>
+                <tr>
+                    <td><strong>Offload</strong><br>(העברה)</td>
+                    <td>העברת כלים מורכבים לסביבה ספקית בתוך Sandbox</td>
+                    <td>הפחתת עומס על ה-LLM הראשי</td>
+                </tr>
+                <tr>
+                    <td><strong>Isolate</strong><br>(בידוד)</td>
+                    <td>איזורי עבודה מבודדים לסוכנים שונים (Planner, Knowledge Manager, Executor)</td>
+                    <td>התמחות וביצועים מקבילים</td>
+                </tr>
+            </table>
+
+            <h3>🖥️ סביבת ה-Sandbox - "Linux as a Service"</h3>
+            <p>כל הפעלת Manus מקימה <strong>מכונה וירטואלית (VM) ייעודית ומבודדת</strong> עם Ubuntu מלאה:</p>
+            <ul>
+                <li><strong>מערכת קבצים מתמשכת:</strong> יצירת קבצים, תיקיות, מסדי נתונים במהלך משימה</li>
+                <li><strong>Root Access:</strong> התקנת חבילות (pip, apt), קומפילציה, הרצת שרתים</li>
+                <li><strong>בידוד אבטחה:</strong> VM ארעית שמתאפסת אחרי משימה - אין סיכון למכונה המקומית</li>
+            </ul>
+
+            <div class="alert-box alert-info">
+                <span style="font-size: 1.5em;">💡</span>
+                <div>
+                    <strong>File System as Context:</strong> Manus משתמש במערכת הקבצים כהרחבה של "זיכרון" ה-LLM - כותב נתונים גדולים לקבצים וקורא רק את הדרוש, מה שמאפשר עבודה עם משימות ענקיות.
+                </div>
+            </div>
+        </section>
+
+        <section id="vs-llms">
+            <h2><span class="icon">⚖️</span> Manus AI מול מודלים כלליים (GPT-4, Claude, Gemini)</h2>
+
+            <h3>🎭 ההבדל הפילוסופי</h3>
+            <p>מודלים כמו GPT-4, Claude 3.5, ו-Gemini הם בעיקרם <strong>מנועי יצירת טקסט</strong> שמגיבים להנחיות. Manus AI הוא <strong>סוכן פעיל</strong> שמתכנן ומבצע.</p>
+
+            <table>
+                <tr>
+                    <th>קריטריון</th>
+                    <th>Manus AI</th>
+                    <th>GPT-4 / Claude / Gemini</th>
+                </tr>
+                <tr>
+                    <td><strong>טבע הפעילות</strong></td>
+                    <td>סוכן אוטונומי - מתכנן ומבצע משימות</td>
+                    <td>מודל תגובה - מייצר טקסט בלבד</td>
+                </tr>
+                <tr>
+                    <td><strong>ארכיטקטורה</strong></td>
+                    <td>Multi-Agent System עם Planner + Executor + Verifier</td>
+                    <td>מודל LLM יחיד</td>
+                </tr>
+                <tr>
+                    <td><strong>סביבת ביצוע</strong></td>
+                    <td>Linux Sandbox מלא עם Root Access</td>
+                    <td>אין סביבת execution (למעט Code Interpreter מוגבל)</td>
+                </tr>
+                <tr>
+                    <td><strong>תכנון משימה</strong></td>
+                    <td>תכנון עצמאי, פירוק לשלבים, פסאודו-קוד</td>
+                    <td>תלוי במשתמש להגדיר את המשימה</td>
+                </tr>
+                <tr>
+                    <td><strong>פער הביצוע</strong></td>
+                    <td>אין - מבצע עד לתוצר מוכן</td>
+                    <td>קיים - משתמש צריך להעתיק קוד ולהריץ</td>
+                </tr>
+                <tr>
+                    <td><strong>שימוש בכלים</strong></td>
+                    <td>מובנה בליבה - דפדפן, API, קבצים</td>
+                    <td>נוסף כתוספות (Plugins/Extensions)</td>
+                </tr>
+            </table>
+
+            <div class="alert-box alert-warning">
+                <span style="font-size: 1.5em;">⚠️</span>
+                <div>
+                    <strong>חשוב להבין:</strong> Manus משתמש בתוכו במודלים כמו Claude 3.7 Sonnet ו-Qwen, אבל הערך הקנייני שלו הוא בארכיטקטורת התזמור - לא במודל עצמו.
+                </div>
+            </div>
+
+            <h3>📊 דוגמה השוואתית - "כתוב לי אפליקציה"</h3>
+
+            <table>
+                <tr>
+                    <th>שלב</th>
+                    <th>GPT-4 / Claude</th>
+                    <th>Manus AI</th>
+                </tr>
+                <tr>
+                    <td>1. קבלת בקשה</td>
+                    <td>✅ מייצר קוד Python/JS</td>
+                    <td>✅ מנתח דרישות ומתכנן</td>
+                </tr>
+                <tr>
+                    <td>2. יצירת קוד</td>
+                    <td>✅ מציג בצ'אט</td>
+                    <td>✅ כותב לקבצים ב-Sandbox</td>
+                </tr>
+                <tr>
+                    <td>3. התקנת תלויות</td>
+                    <td>❌ משתמש צריך להריץ pip/npm</td>
+                    <td>✅ מתקין אוטומטית</td>
+                </tr>
+                <tr>
+                    <td>4. הרצה ובדיקה</td>
+                    <td>❌ משתמש מריץ ומדווח שגיאות</td>
+                    <td>✅ מריץ, מזהה שגיאות, מתקן</td>
+                </tr>
+                <tr>
+                    <td>5. פריסה</td>
+                    <td>❌ משתמש צריך להעלות לשרת</td>
+                    <td>✅ מפרסם לענן (Website Builder)</td>
+                </tr>
+                <tr>
+                    <td><strong>תוצאה</strong></td>
+                    <td>קוד לעיון</td>
+                    <td>אפליקציה פועלת + URL</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="vs-coding">
+            <h2><span class="icon">👨💻</span> Manus AI מול סוכני קוד (Cursor, Claude Code)</h2>
+
+            <h3>🎯 הבדלים מהותיים</h3>
+
+            <table>
+                <tr>
+                    <th>קריטריון</th>
+                    <th>Manus AI</th>
+                    <th>Cursor Agent</th>
+                    <th>Claude Code (MCP)</th>
+                </tr>
+                <tr>
+                    <td><strong>סוג כלי</strong></td>
+                    <td>סוכן אוטונומי מלא - SaaS</td>
+                    <td>עוזר קידוד ב-IDE</td>
+                    <td>כלי CLI לקידוד</td>
+                </tr>
+                <tr>
+                    <td><strong>סביבת עבודה</strong></td>
+                    <td>Linux Sandbox בענן</td>
+                    <td>תוך IDE מקומי</td>
+                    <td>Terminal מקומי</td>
+                </tr>
+                <tr>
+                    <td><strong>רמת אוטונומיה</strong></td>
+                    <td>גבוהה - מבצע משימות מקצה לקצה</td>
+                    <td>בינונית - דורש אישור למרבית הפעולות</td>
+                    <td>בינונית-גבוהה - עובד עם Node.js</td>
+                </tr>
+                <tr>
+                    <td><strong>יכולות דפדפן</strong></td>
+                    <td>✅ Browser Operator מובנה</td>
+                    <td>❌ אין</td>
+                    <td>❌ אין</td>
+                </tr>
+                <tr>
+                    <td><strong>מחקר רחב</strong></td>
+                    <td>✅ Wide Research - מאות סוכנים במקביל</td>
+                    <td>❌ אין</td>
+                    <td>⚠️ מוגבל - MCP servers</td>
+                </tr>
+                <tr>
+                    <td><strong>יצירת מצגות/עיצובים</strong></td>
+                    <td>✅ Manus Slides + AI Design</td>
+                    <td>❌ אין</td>
+                    <td>❌ אין</td>
+                </tr>
+                <tr>
+                    <td><strong>פריסה לענן</strong></td>
+                    <td>✅ Website Builder מובנה</td>
+                    <td>❌ דורש תהליך נפרד</td>
+                    <td>❌ דורש תהליך נפרד</td>
+                </tr>
+                <tr>
+                    <td><strong>שיתוף פעולה</strong></td>
+                    <td>✅ Manus Collab + Slack integration</td>
+                    <td>⚠️ דרך Git בלבד</td>
+                    <td>❌ אין</td>
+                </tr>
+                <tr>
+                    <td><strong>מחיר</strong></td>
+                    <td>$20-$199/חודש (קרדיטים)</td>
+                    <td>$20/חודש + quota</td>
+                    <td>חינמי (Claude API בתשלום)</td>
+                </tr>
+            </table>
+
+            <h3>🔍 ניתוח לעומק - Cursor vs Manus</h3>
+
+            <div class="grid-2">
+                <div class="feature-card">
+                    <h4>💼 Cursor Agent - עוזר פרודוקטיביות</h4>
+                    <ul>
+                        <li><strong>יתרון:</strong> אינטגרציה הדוקה עם IDE</li>
+                        <li><strong>יתרון:</strong> עבודה על codebase קיים</li>
+                        <li><strong>חיסרון:</strong> תלות באישורים ידניים</li>
+                        <li><strong>חיסרון:</strong> Slow mode אחרי quota</li>
+                        <li><strong>מתאים ל:</strong> מפתחים שרוצים עזרה אינטראקטיבית</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🤖 Manus AI - סוכן עצמאי</h4>
+                    <ul>
+                        <li><strong>יתרון:</strong> משימות מקצה לקצה ללא השגחה</li>
+                        <li><strong>יתרון:</strong> יכולות מחקר ואינטגרציה רחבות</li>
+                        <li><strong>חיסרון:</strong> פחות שליטה על כל שלב</li>
+                        <li><strong>חיסרון:</strong> תמחור מורכב (קרדיטים)</li>
+                        <li><strong>מתאים ל:</strong> משימות גדולות שצריך להאציל</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert-box alert-info">
+                <span style="font-size: 1.5em;">💡</span>
+                <div>
+                    <strong>המלצה:</strong> Cursor מתאים למפתחים שרוצים לשמור שליטה מלאה. Manus מתאים כאשר רוצים לאצול משימה שלמה ("בנה לי dashboard אנליטיקה") ולקבל תוצר מוכן.
+                </div>
+            </div>
+        </section>
+
+        <section id="unique">
+            <h2><span class="icon">🌟</span> תכונות ייחודיות ודיפרנציאטורים</h2>
+
+            <h3>🔬 Wide Research - מחקר מקבילי בקנה מידה</h3>
+            <p>זוהי <strong>היכולת הייחודית ביותר</strong> של Manus - מערכת שמפעילה מאות סוכנים במקביל לעיבוד מידע בקנה מידה גדול.</p>
+
+            <div class="alert-box alert-success">
+                <span style="font-size: 1.5em;">✅</span>
+                <div>
+                    <strong>הבעיה שנפתרת:</strong> בזרימת עבודה סדרתית (Sequential), חקר 100 פריטים לוקח O(n) זמן ומוביל לדעיכת איכות בגלל context saturation. Manus פותר זאת עם O(1) - כל פריט מקבל סוכן ייעודי עם context נקי.
+                </div>
+            </div>
+
+            <table>
+                <tr>
+                    <th>מאפיין</th>
+                    <th>סוכן מסורתי (סדרתי)</th>
+                    <th>Manus Wide Research</th>
+                </tr>
+                <tr>
+                    <td><strong>ארכיטקטורה</strong></td>
+                    <td>חוט יחיד (לולאה)</td>
+                    <td>Master-Worker (Map-Reduce)</td>
+                </tr>
+                <tr>
+                    <td><strong>סיבוכיות זמן</strong></td>
+                    <td>O(n) - ליניארי</td>
+                    <td>O(1) - קבוע (מוגבל ע"י מקביליות)</td>
+                </tr>
+                <tr>
+                    <td><strong>עומס הקשר</strong></td>
+                    <td>מצטבר - דעיכה גבוהה באיכות</td>
+                    <td>מבודד - context נקי לכל worker</td>
+                </tr>
+                <tr>
+                    <td><strong>מצב כישלון</strong></td>
+                    <td>שגיאה עוצרת את כל התהליך</td>
+                    <td>כישלון מבודד - worker אחד נכשל, השאר ממשיכים</td>
+                </tr>
+            </table>
+
+            <h4>📋 תהליך Wide Research</h4>
+            <ol>
+                <li><strong>Decompose:</strong> המתכנן מפרק "נתח 50 מתחרים" ל-50 משימות עצמאיות</li>
+                <li><strong>Parallelize:</strong> הפעלת 50 סוכני worker במקביל</li>
+                <li><strong>Synthesize:</strong> סוכן מסנתז אוסף את כל התוצאות לדו"ח אחד מאוחד</li>
+            </ol>
+
+            <h3>💾 Projects & Skills - "זיכרון" תפעולי</h3>
+
+            <div class="grid-2">
+                <div class="feature-card">
+                    <h4>📁 Projects (פרויקטים)</h4>
+                    <p><strong>מהות:</strong> workspaces מתמשכים עם הוראות מאסטר וקבצים משותפים</p>
+                    <p><strong>יתרון:</strong> כל משימה חדשה מתחילה עם context מוכן</p>
+                    <p><strong>שימוש:</strong> עקביות בין משימות, governance ארגוני</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🎯 Skills (כישורים)</h4>
+                    <p><strong>מהות:</strong> מודולים מבוססי-קבצים (SKILL.md + scripts)</p>
+                    <p><strong>יתרון:</strong> ניידות וקומפוזביליות - ניתן לשלב Skills</p>
+                    <p><strong>שימוש:</strong> workflows חוזרים, שיתוף ידע בין צוותים</p>
+                </div>
+            </div>
+
+            <h3>🌐 Browser Operator - גלישה אוטומטית</h3>
+            <p>יכולת ייחודית להפעיל את הדפדפן של המשתמש עם חשבונות מחוברים:</p>
+            <ul>
+                <li>מילוי טפסים אוטומטי</li>
+                <li>ניווט בין אתרים וסינתוז מידע</li>
+                <li>ביצוע פעולות חוזרות (scraping, automation)</li>
+                <li>עבודה עם כלים בתשלום שדורשים התחברות</li>
+            </ul>
+
+            <div class="alert-box alert-warning">
+                <span style="font-size: 1.5em;">⚠️</span>
+                <div>
+                    <strong>אזהרה:</strong> Browser Operator מגדיל את שטח התקיפה - חייב להשתמש במנגנוני Authorize, צפייה בזמן אמת ועצירה מיידית.
+                </div>
+            </div>
+
+            <h3>🎨 Manus Slides & AI Design</h3>
+            <ul>
+                <li><strong>Manus Slides:</strong> יצירת מצגות מלאות ומעוצבות מפרומפט אחד (תוכן + עיצוב + תרשימים + speaker notes)</li>
+                <li><strong>AI Design:</strong> לוגואים, באנרים, עיצובים גרפיים ללא ידע בכלי עיצוב</li>
+            </ul>
+
+            <h3>🔌 אינטגרציות - "להישאר בזרימה"</h3>
+            <table>
+                <tr>
+                    <th>אינטגרציה</th>
+                    <th>יכולות</th>
+                </tr>
+                <tr>
+                    <td><strong>MCP Connectors</strong></td>
+                    <td>חיבור למאגרי מידע ארגוניים (databases, APIs, internal tools)</td>
+                </tr>
+                <tr>
+                    <td><strong>Slack</strong></td>
+                    <td>הפעלת משימות מתוך threads, קבלת updates בזמן אמת</td>
+                </tr>
+                <tr>
+                    <td><strong>Zapier</strong></td>
+                    <td>אוטומציות עם 5,000+ אפליקציות</td>
+                </tr>
+                <tr>
+                    <td><strong>Mail Manus</strong></td>
+                    <td>ניהול דוא"ל - קריאה, סיכום, מענה, תזמון</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="benchmarks">
+            <h2><span class="icon">📊</span> ביצועים ומדדים</h2>
+
+            <h3>🏆 GAIA Benchmark - המדד המוביל לסוכנים</h3>
+            <p>GAIA (General AI Assistants) הוא המבחן הסטנדרטי לבדיקת יכולות אגנטיות.</p>
+
+            <table>
+                <tr>
+                    <th>רמה</th>
+                    <th>Manus AI</th>
+                    <th>OpenAI Deep Research</th>
+                    <th>AutoGPT</th>
+                </tr>
+                <tr>
+                    <td><strong>Level 1</strong><br>(משימות בסיסיות)</td>
+                    <td><span class="badge badge-success">86.5%</span></td>
+                    <td><span class="badge badge-warning">74%</span></td>
+                    <td><span class="badge badge-danger">~40%</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Level 2</strong><br>(משימות בינוניות)</td>
+                    <td><span class="badge badge-warning">70.1%</span></td>
+                    <td><span class="badge badge-danger">~55%</span></td>
+                    <td><span class="badge badge-danger">~25%</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Level 3</strong><br>(משימות מורכבות)</td>
+                    <td><span class="badge badge-warning">57.7%</span></td>
+                    <td><span class="badge badge-danger">~35%</span></td>
+                    <td><span class="badge badge-danger">~10%</span></td>
+                </tr>
+            </table>
+
+            <div class="alert-box alert-success">
+                <span style="font-size: 1.5em;">✅</span>
+                <div>
+                    <strong>תובנה מרכזית:</strong> הפער הגדול ביותר ב-Level 3 מדגיש את היתרון של לולאת Plan-Execute-Verify הרקורסיבית של Manus - יכולת התאוששות מכישלונות.
+                </div>
+            </div>
+
+            <h3>📈 מדדים נוספים</h3>
+            <ul>
+                <li><strong>ProgramDev:</strong> 60% הצלחה (פיתוח תוכנה מקצה לקצה)</li>
+                <li><strong>Task Completion Rate:</strong> 95% עם אוטונומיה מלאה (לפי מקורות החברה)</li>
+                <li><strong>SWE-bench:</strong> יתרון במשימות אינטראקציה עם סביבה (בזכות Sandbox)</li>
+            </ul>
+
+            <div class="alert-box alert-info">
+                <span style="font-size: 1.5em;">💡</span>
+                <div>
+                    <strong>הערה חשובה:</strong> חלק מהציונים מוזכרים במדיה אך לא מופיעים ב-leaderboard ציבורי - קשה לאמת באופן עצמאי.
+                </div>
+            </div>
+        </section>
+
+        <section id="limitations">
+            <h2><span class="icon">⚠️</span> מגבלות וסיכונים</h2>
+
+            <h3>🔴 סיכונים טכניים</h3>
+
+            <div class="grid-2">
+                <div class="feature-card">
+                    <h4>❌ כישלון סטוכסטי</h4>
+                    <p>סוכנים הסתברותיים - סקריפט שעובד פעם אחת עלול להיכשל בפעם הבאה.</p>
+                    <p><strong>סימפטומים:</strong></p>
+                    <ul>
+                        <li>לולאות retry אינסופיות</li>
+                        <li>"הצלחה" עם נתונים שגויים</li>
+                        <li>דיבוג מורכב של multi-agent</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h4>💸 חוסר חיזוי בעלויות</h4>
+                    <p>מודל "תשלום לפי צעד" - משימה שנכנסת ללולאה יכולה לרוקן קרדיטים.</p>
+                    <p><strong>דוגמאות:</strong></p>
+                    <ul>
+                        <li>משימה טיפוסית: ~150 קרדיטים</li>
+                        <li>משימה שנכשלה: עד 1,000+ קרדיטים</li>
+                        <li>Wide Research: תלוי במספר פריטים</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🔓 סיכוני אבטחה</h4>
+                    <p>Root Access ב-VM + חיבור לאינטרנט = סיכון פוטנציאלי.</p>
+                    <p><strong>איומים:</strong></p>
+                    <ul>
+                        <li>Prompt Injection מאתרים זדוניים</li>
+                        <li>דליפת נתונים רגישים</li>
+                        <li>פעולות לא מורשות בשם המשתמש</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🔍 פער שקיפות</h4>
+                    <p>אין פירוט מלא על מודלי הבסיס וארכיטקטורת האימון.</p>
+                    <p><strong>חסר:</strong></p>
+                    <ul>
+                        <li>פרטי foundation models</li>
+                        <li>מדיניות data residency</li>
+                        <li>תוצאות benchmark עצמאיות מאומתות</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>⚠️ מגבלות תפעוליות</h3>
+
+            <table>
+                <tr>
+                    <th>מגבלה</th>
+                    <th>תיאור</th>
+                    <th>פתרון מומלץ</th>
+                </tr>
+                <tr>
+                    <td><strong>אי-דיוקים</strong></td>
+                    <td>המערכת אינה 100% accurate (מוזכר בתיעוד רשמי)</td>
+                    <td>אמת תוצאות קריטיות ידנית</td>
+                </tr>
+                <tr>
+                    <td><strong>תלות באינטרנט</strong></td>
+                    <td>Browser Operator ו-Wide Research דורשים חיבור יציב</td>
+                    <td>תכנן משימות עם קישוריות טובה</td>
+                </tr>
+                <tr>
+                    <td><strong>Cut-off זמן</strong></td>
+                    <td>מוגבל לידע עד תאריך מסוים (לא מפורט)</td>
+                    <td>השתמש ב-Web Search לנושאים עדכניים</td>
+                </tr>
+                <tr>
+                    <td><strong>תלות בספק</strong></td>
+                    <td>כעת בבעלות Meta - שינויים אפשריים</td>
+                    <td>עקוב אחרי הודעות, תכנן fallback</td>
+                </tr>
+            </table>
+
+            <div class="alert-box alert-danger">
+                <span style="font-size: 1.5em;">❌</span>
+                <div>
+                    <strong>אזהרה קריטית:</strong> Browser Operator עם חשבונות מאומתים דורש תהליכי אישור קפדניים, תיחום פעולות, ו-separation of duties. אל תעניק גישה לכלים פיננסיים או רגישים ללא פיקוח.
+                </div>
+            </div>
+        </section>
+
+        <section id="summary">
+            <h2><span class="icon">🎓</span> סיכום והמלצות</h2>
+
+            <h3>✨ מה מיוחד ב-Manus AI?</h3>
+
+            <div class="alert-box alert-success">
+                <span style="font-size: 1.5em;">✅</span>
+                <div>
+                    <strong>4 דיפרנציאטורים מרכזיים:</strong>
+                    <ol>
+                        <li><strong>Linux Sandbox מלא</strong> - ביצוע אוטונומי עם התקנת תוכנות ומערכת קבצים מתמשכת</li>
+                        <li><strong>Wide Research</strong> - סקייל מקבילי של מאות סוכנים לעיבוד מידע בקנה מידה</li>
+                        <li><strong>Projects & Skills</strong> - "זיכרון" תפעולי עם context persistence ברמת מערכת</li>
+                        <li><strong>אינטגרציות מוכנות</strong> - Slack, Browser, Zapier, Mail - "להישאר בזרימה"</li>
+                    </ol>
+                </div>
+            </div>
+
+            <h3>🎯 מתי להשתמש ב-Manus AI?</h3>
+
+            <div class="grid-2">
+                <div class="feature-card">
+                    <h4>✅ מומלץ עבור:</h4>
+                    <ul>
+                        <li>מחקר שוק בקנה מידה גדול (עשרות-מאות פריטים)</li>
+                        <li>יצירת תוצרים פורמליים (מצגות, דוחות, אתרים)</li>
+                        <li>אוטומציות מחזוריות (דוחות שבועיים, מעקב מתחרים)</li>
+                        <li>צוותים מעורבים (לא רק מפתחים)</li>
+                        <li>משימות שזמן-לערך חשוב יותר משליטה מלאה</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h4>❌ פחות מתאים עבור:</h4>
+                    <ul>
+                        <li>משימות שדורשות שליטה הנדסית מוחלטת</li>
+                        <li>סביבות production קריטיות ללא tolerance לשגיאות</li>
+                        <li>תקציב מוגבל מאוד (עלויות לא צפויות)</li>
+                        <li>נתונים סודיים ביותר ללא אפשרות audit trail</li>
+                        <li>מפתחים שרוצים לשמור על כל שלב בקוד</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>⚖️ Manus vs החלופות</h3>
+
+            <table>
+                <tr>
+                    <th>תרחיש</th>
+                    <th>הכלי המומלץ</th>
+                    <th>הסבר</th>
+                </tr>
+                <tr>
+                    <td>צ'אט ושאלות כלליות</td>
+                    <td><strong>GPT-4 / Claude</strong></td>
+                    <td>יעיל יותר ללא overhead של agent</td>
+                </tr>
+                <tr>
+                    <td>עזרה בקידוד אינטראקטיבי</td>
+                    <td><strong>Cursor / Claude Code</strong></td>
+                    <td>שליטה מלאה, עבודה על codebase קיים</td>
+                </tr>
+                <tr>
+                    <td>משימות מקצה לקצה לאצילה</td>
+                    <td><strong>Manus AI</strong></td>
+                    <td>אוטונומיה מלאה, תוצר מוכן</td>
+                </tr>
+                <tr>
+                    <td>בניית framework סוכנים מותאם</td>
+                    <td><strong>LangGraph / AutoGen</strong></td>
+                    <td>שליטה מלאה, state management עצמי</td>
+                </tr>
+                <tr>
+                    <td>מחקר מקבילי בקנה מידה</td>
+                    <td><strong>Manus AI (Wide Research)</strong></td>
+                    <td>אין תחליף ישיר ליכולת זו</td>
+                </tr>
+            </table>
+
+            <h3>💰 שיקולי תמחור</h3>
+
+            <table>
+                <tr>
+                    <th>תוכנית</th>
+                    <th>מחיר</th>
+                    <th>קרדיטים</th>
+                    <th>משימות טיפוסיות (אומדן)</th>
+                </tr>
+                <tr>
+                    <td><strong>Free</strong></td>
+                    <td>$0/חודש</td>
+                    <td>300/יום</td>
+                    <td>~2 ביום</td>
+                </tr>
+                <tr>
+                    <td><strong>Pro (Tier 1)</strong></td>
+                    <td>$20/חודש</td>
+                    <td>4,000/חודש</td>
+                    <td>~26</td>
+                </tr>
+                <tr>
+                    <td><strong>Pro (Tier 2)</strong></td>
+                    <td>$40/חודש</td>
+                    <td>8,000/חודש</td>
+                    <td>~53</td>
+                </tr>
+                <tr>
+                    <td><strong>Team</strong></td>
+                    <td>$20/מושב</td>
+                    <td>לפי תוכנית Pro</td>
+                    <td>+ SSO, Analytics, Access Control</td>
+                </tr>
+            </table>
+
+            <div class="alert-box alert-warning">
+                <span style="font-size: 1.5em;">⚠️</span>
+                <div>
+                    <strong>שים לב:</strong> משימה טיפוסית = ~150 קרדיטים, אבל צריכה משתנה בהתאם למורכבות. Wide Research ו-Website Builder עלולים לצרוך הרבה יותר.
+                </div>
+            </div>
+
+            <h3>🔐 המלצות אבטחה ושליטה</h3>
+
+            <ol>
+                <li><strong>התחל עם Chat Mode:</strong> נסה בחינם לפני השקעה בקרדיטים</li>
+                <li><strong>הגבל הרשאות Browser Operator:</strong> אל תיתן גישה לכל האתרים ללא פיקוח</li>
+                <li><strong>בדוק תוצאות קריטיות:</strong> אל תסמוך עיוורות על פלט AI</li>
+                <li><strong>הגדר Projects עם הוראות ברורות:</strong> למנוע drift בין משימות</li>
+                <li><strong>עקוב אחרי צריכת קרדיטים:</strong> נטר באופן שוטף למניעת הפתעות</li>
+                <li><strong>השתמש ב-Webhooks לאורקסטרציה:</strong> observability ו-SLA מנוהלים</li>
+            </ol>
+
+            <h3>🚀 המלצה סופית</h3>
+
+            <div class="alert-box alert-success">
+                <span style="font-size: 1.5em;">✅</span>
+                <div>
+                    <p><strong>Manus AI מייצג קפיצת מדרגה אמיתית</strong> במעבר מ-"מודל שפה" ל-"סוכן אוטונומי". הוא לא מושלם, אבל היכולות הייחודיות שלו - במיוחד Wide Research, Sandbox מלא, ו-Projects/Skills - הופכים אותו לכלי רב-עוצמה עבור ארגונים שמחפשים אוטומציה מקצה לקצה.</p>
+
+                    <p><strong>התחל קטן:</strong> נסה את Chat Mode, עבור למשימות פשוטות ב-Free tier, ואז שקול Pro/Team אם זה מתאים לצרכים שלך. זכור תמיד לאמת תוצאות ולנטר עלויות.</p>
+                </div>
+            </div>
+
+            <div class="alert-box alert-info">
+                <span style="font-size: 1.5em;">💡</span>
+                <div>
+                    <strong>עדכון אחרון:</strong> פברואר 2026 - לאחר הרכישה על ידי Meta. צפויים שינויים במוצר ובאינטגרציות. עקוב אחרי הודעות רשמיות.
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer style="text-align: center; padding: 40px 20px; color: rgba(255,255,255,0.6);">
+        <p>מסמך זה נוצר על בסיס מקורות ציבוריים ורשמיים של Manus AI ומדיה טכנולוגית | עודכן: פברואר 2026</p>
+    </footer>
+</body>
+</html>
